@@ -1,6 +1,11 @@
 import 'package:english_words/english_words.dart';
+import 'package:meta/meta.dart';
 
 class LanguageService {
+  const LanguageService(this.data);
+
+  final List<String> data;
+
   List<String> generateNouns(
     int count, {
     String? firstLetter,
@@ -9,7 +14,7 @@ class LanguageService {
     int? syllableLength,
     Comparison comparison = Comparison.equals,
   }) {
-    final filteredNouns = nouns
+    final filteredNouns = data
         .where((value) {
           if (firstLetter != null) {
             if (!value.startsWith(firstLetter)) return false;
@@ -39,8 +44,12 @@ class LanguageService {
         )
         .toList();
 
-    return (filteredNouns..shuffle()).take(count).toList();
+    return shuffle(filteredNouns).take(count).toList();
   }
+
+  @visibleForOverriding
+  @visibleForTesting
+  List<String> shuffle(List<String> data) => data..shuffle();
 
   bool _nounComparisonTest(
     String value,

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:dart_frog/dart_frog.dart';
+import 'package:english_words/english_words.dart';
 import 'package:froggy/language_service.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
@@ -21,7 +22,9 @@ void main() {
 
       when(() => context.request).thenReturn(request);
       when(() => context.read<LanguageService>()).thenReturn(service);
-      when(() => service.generateNouns(2)).thenReturn(['apple', 'banana']);
+      when(() => service.generateNouns(2)).thenReturn(
+        ['apple', 'banana'],
+      );
 
       final response = route.onRequest(context);
 
