@@ -1,11 +1,22 @@
 # froggy
 
-[![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
-[![License: MIT][license_badge]][license_link]
+An noun generator application built with [dart_frog](https://pub.dev/packages/dart_frog)
 
-An example application built with dart_frog
+## Prerequisites
 
-[license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
-[license_link]: https://opensource.org/licenses/MIT
-[very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
-[very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
+1. Install [Dart](https://dart.dev/get-dart) or [Flutter](https://docs.flutter.dev/get-started/install) SDK
+2. Install **dart_frog** package
+    ```shell
+    $ dart pub global activate dart_frog
+    ```
+
+## Running the project
+
+1. Open project directory in your Terminal and run:
+
+    ```shell
+    $ dart_frog dev
+    ```
+
+    *If running project in VSCode, then press F5 to launch with debug mode*
+2. Visit page in browser at http://localhost:8080
