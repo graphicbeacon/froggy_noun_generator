@@ -52,11 +52,51 @@ void main() {
       );
     });
 
+    test('responds with 400 if length is not a number', () {
+      final context = _MockRequestContext();
+      final service = _MockLanguageService();
+      final request = Request.get(
+        Uri.parse('http://localhost:8080/noun/generate?count=2&length=e'),
+      );
+
+      when(() => context.request).thenReturn(request);
+      when(() => context.read<LanguageService>()).thenReturn(service);
+
+      final response = route.onRequest(context);
+
+      expect(response.statusCode, HttpStatus.badRequest);
+      expect(
+        response.body(),
+        completion(
+          equals('Query parameter `length` must be a number'),
+        ),
+      );
+    });
+
+    test('responds with 400 if syllableLength is not a number', () {
+      final context = _MockRequestContext();
+      final service = _MockLanguageService();
+      final request = Request.get(
+        Uri.parse(
+          'http://localhost:8080/noun/generate?count=2&syllableLength=e',
+        ),
+      );
+
+      when(() => context.request).thenReturn(request);
+      when(() => context.read<LanguageService>()).thenReturn(service);
+
+      final response = route.onRequest(context);
+
+      expect(response.statusCode, HttpStatus.badRequest);
+      expect(
+        response.body(),
+        completion(
+          equals('Query parameter `syllableLength` must be a number'),
+        ),
+      );
+    });
+
     // TODO: Up for a challenge? Add more tests
-
-    // TODO: responds with 400 if length is not a number
-
-    // TODO: responds with 400 if syllableLength is not a number
 
     // TODO: responds with results containing firstLetter matches
 
